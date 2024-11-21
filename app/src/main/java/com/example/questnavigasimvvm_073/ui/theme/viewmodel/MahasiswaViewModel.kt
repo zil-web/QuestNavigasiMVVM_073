@@ -5,6 +5,8 @@ import com.example.questnavigasimvvm_073.model.DataMahasiswa
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+
 
 class MahasiswaViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(DataMahasiswa())

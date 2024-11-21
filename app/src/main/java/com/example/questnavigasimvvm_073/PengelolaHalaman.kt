@@ -4,16 +4,26 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.questnavigasimvvm_073.model.DataKelamin
 import com.example.questnavigasimvvm_073.ui.theme.view.DataMahasiswaView
 import com.example.questnavigasimvvm_073.ui.theme.view.FormMahasiswaView
 import com.example.questnavigasimvvm_073.ui.theme.viewmodel.MahasiswaViewModel
+
+
+enum class Halaman{
+    Formulir,
+    Detail,
+}
+
 
 @Composable
 fun PengelolaanHalaman(
@@ -29,8 +39,8 @@ fun PengelolaanHalaman(
         ) {
             composable(route = Halaman.Formulir.name) {
                 val konteks = LocalContext.current
-                FormMahasiswaView (
-                    listJK = DataKelamin.listJK.map {
+                FormMahasiswaView(
+                    listJk = DataKelamin.listJk.map {
                             isi -> konteks.resources.getString(isi)
                     },
                     onSubmitClicked = {
