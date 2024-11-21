@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.questnavigasimvvm_073"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.questnavigasimvvm_073"

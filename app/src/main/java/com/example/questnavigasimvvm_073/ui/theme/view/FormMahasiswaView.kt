@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -18,6 +19,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -28,61 +30,74 @@ fun FormMahasiswaView(
 
 ){
     var nama by rememberSaveable { mutableStateOf("") }
-    var gender by remember { mutableStateOf("") }
+    var nim by rememberSaveable { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
+    var noHP by remember { mutableStateOf("") }
+    var selectedGender by rememberSaveable { mutableStateOf("") }
 
-    val dataMahasiswa : MutableList<String> = mutableListOf(nama ,gender,alamat)
-
-    Column (
-        Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally){
+    val dataMahasiswa: MutableList<String> = mutableListOf(nama, nim, selectedGender, email, alamat, noHP)
+    Column (Modifier.fillMaxSize().padding(16.dp)
+        , horizontalAlignment = Alignment.CenterHorizontally){
         OutlinedTextField(
             value = nama,
             onValueChange = {nama = it},
-            label = { Text("Nama") },
-            placeholder = { Text("Masukkan Nama") },
+            placeholder = { Text("Massukkan nama")},
+            label = {Text("Nama")},
             modifier = Modifier.fillMaxWidth().padding(5.dp)
         )
 
-        Row (){
+        OutlinedTextField(
+            value = nim,
+            onValueChange = {nim = it},
+            placeholder = { Text("Massukkan NIM")},
+            label = {Text("NIM")},
+            modifier = Modifier.fillMaxWidth().padding(5.dp)
+        )
+
+        Row {
             listJk.forEach { item ->
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    RadioButton(
-                        selected = gender == item,
+                Row (verticalAlignment = Alignment.CenterVertically){
+                    RadioButton(selected = selectedGender == item,
                         onClick = {
-                            gender = item
-                        })
+                            selectedGender = item
+                        }
+                    )
                     Text(item)
                 }
             }
-
-
         }
+
+        OutlinedTextField(
+            value = email,
+            onValueChange = {email = it},
+            placeholder = { Text("Massukkan email")},
+            label = {Text("Email")},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            modifier = Modifier.fillMaxWidth().padding(5.dp)
+        )
+
         OutlinedTextField(
             value = alamat,
             onValueChange = {alamat = it},
-            label = { Text("Alamat") },
-            placeholder = { Text("Masukkan Alamat") },
+            placeholder = { Text("Massukkan alamat")},
+            label = {Text("Alamat")},
             modifier = Modifier.fillMaxWidth().padding(5.dp)
         )
-        Button(onClick = { onSubmitClicked(dataMahasiswa)})
-        { Text("Simpan") }
-    }
 
-}
-@Composable
-fun CardSection(judulParam : String, Isiparams : String){
-    Column(
-        horizontalAlignment = Alignment.Start
-    ) {
+        OutlinedTextField(
+            value = noHP,
+            onValueChange = {noHP = it},
+            placeholder = { Text("Massukkan noHP")},
+            label = {Text("No HP")},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth().padding(5.dp)
+        )
 
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(5.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(text = judulParam, modifier = Modifier.weight(0.8f))
-            Text(text = ":", modifier = Modifier.weight(0.2f))
-            Text(text = "$Isiparams", modifier = Modifier.weight(2f))
+        Button(onClick = { onSubmitClicked(dataMahasiswa) })
+        {
+            Text("Simpan")
+
         }
 
     }

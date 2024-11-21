@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.questnavigasimvvm_073.model.DataKelamin
+import com.example.questnavigasimvvm_073.model.DataMahasiswa
 import com.example.questnavigasimvvm_073.ui.theme.view.DataMahasiswaView
 import com.example.questnavigasimvvm_073.ui.theme.view.FormMahasiswaView
 import com.example.questnavigasimvvm_073.ui.theme.viewmodel.MahasiswaViewModel
