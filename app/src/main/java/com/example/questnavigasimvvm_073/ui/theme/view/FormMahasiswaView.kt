@@ -29,6 +29,7 @@ fun FormMahasiswaView(
     onSubmitClicked: (MutableList<String>) ->Unit
 
 ){
+    // Menyimpan state untuk setiap field input
     var nama by rememberSaveable { mutableStateOf("") }
     var nim by rememberSaveable { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -36,7 +37,10 @@ fun FormMahasiswaView(
     var noHP by remember { mutableStateOf("") }
     var selectedGender by rememberSaveable { mutableStateOf("") }
 
+    // Mengumpulkan data mahasiswa ke dalam list
+
     val dataMahasiswa: MutableList<String> = mutableListOf(nama, nim, selectedGender, email, alamat, noHP)
+    // Kolom utama form dengan padding dan alignment
     Column (Modifier.fillMaxSize().padding(16.dp)
         , horizontalAlignment = Alignment.CenterHorizontally){
         OutlinedTextField(
@@ -93,7 +97,7 @@ fun FormMahasiswaView(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth().padding(5.dp)
         )
-
+        // Tombol Simpan untuk mengirim data
         Button(onClick = { onSubmitClicked(dataMahasiswa) })
         {
             Text("Simpan")
